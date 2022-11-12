@@ -1,4 +1,4 @@
-auth_enabled: true
+auth_enabled: false
 
 http_prefix:
 
@@ -7,7 +7,7 @@ server:
   grpc_listen_address: 0.0.0.0
   http_listen_port: 3100
   grpc_listen_port: 9095
-  log_level: info
+  log_level: debug
 
 common:
   storage:
@@ -15,8 +15,8 @@ common:
       endpoint: minio:9000
       insecure: true
       bucketnames: loki-data
-      access_key_id: loki
-      secret_access_key: supersecret
+      access_key_id: minioadmin
+      secret_access_key: minioadmin
       s3forcepathstyle: true
   compactor_address: http://loki:3100
 
@@ -64,7 +64,6 @@ storage_config:
     shared_store: s3
     active_index_directory: /tmp/index
     cache_location: /tmp/boltdb-cache
-
 
 limits_config:
   max_cache_freshness_per_query: '10m'

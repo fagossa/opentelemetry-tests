@@ -18,6 +18,8 @@ services:
       - "4317:4317"   # OTLP gRPC receiver
       - "4318:4318"   # OTLP http receiver
       - "55679:55679" # zpages extension
+    depends_on:
+      - loki
     networks:
       - loki
 
@@ -29,7 +31,7 @@ services:
     volumes:
       - ./loki-config.yaml:/etc/loki/local-config.yaml
       - ./volumes/loki:/loki
-    links:
+    depends_on:
       - minio
     networks:
       - loki
